@@ -31,7 +31,9 @@
     "express-validator": "^6.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
+    "redux-observable": "^2.0.0",
     "shortid": "^2.2.16",
     "typescript": "^4.5.2"
   },
