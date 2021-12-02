@@ -2,32 +2,54 @@
 import { Route, Routes } from 'react-router';
 import {LoginPage} from '../src/pages/Login.page'
 import {HomePage} from '../src/pages/Home.page'
+import {RegisterPage} from '../src/pages/Register.page'
+import {RequireAuth} from '../src/components/hoc/requireAuth'
+import {NoAuth} from '../src/components/hoc/noAuth'
+import {ErrorPage} from '../src/pages/Error.page'
+import {DashboardPage} from '../src/pages/Dashboard.page'
+
 
 import {Layout} from '../src/components/layout'
 import { Provider } from 'react-redux';
-import { configureStore } from './store/store';
+import { store } from './store/rootStore';
+
+
 
 
 
 import './App.css';
 
+
 function App() {
   return (
 
 
-<Provider store={configureStore()}>
+<Provider store={store}>
 <Routes >
 
 <Route path="/" element={<Layout/>}>
- <Route index element={<HomePage/>}/>
+ <Route index element={
 
- <Route path="login" element={<LoginPage/>}/>
+   <HomePage/>
+  }/>
+
+   <Route path="dashboard" element={<RequireAuth>
+   <DashboardPage/>
+   </RequireAuth>
+   }/>
+
+ <Route path="login" element={ <NoAuth>
+   <LoginPage/>   </NoAuth>
+   }/>
+
+ <Route path="register" element={
+ <NoAuth>
+   <RegisterPage/>
+   </NoAuth>
+   }/>
 
 </Route>
-
-
-
-  
+<Route path="*" element={<ErrorPage/>}/>
  </Routes>
 </Provider>
 

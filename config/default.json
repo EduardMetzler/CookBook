@@ -1,0 +1,7 @@
+{
+    "port": 5000,
+    "jwtSecter": "123",
+    "mongoUri": "mongodb+srv://eduard:testUser@cluster0.zy2b1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+  }
+  

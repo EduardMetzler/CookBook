@@ -1,20 +1,8 @@
-import { combineReducers } from "redux";
-import { applyMiddleware, createStore, compose } from "redux";
-import { combineEpics, createEpicMiddleware } from "redux-observable";
-import { composeWithDevTools } from "redux-devtools-extension";
 
-const epic = combineEpics();
+import {  AuthActionTypes } from './auth/models/actions';
+import {  UserDatenActionTypes } from './userDaten/models/actions';
 
-const epicDependencies = {};
-const epicMiddleware = createEpicMiddleware({ dependencies: epicDependencies });
 
-export const configureStore = () => {
-  const store = createStore(
-    combineReducers({}),
-    undefined,
-    composeWithDevTools(compose(applyMiddleware(epicMiddleware)))
-  );
-  epicMiddleware.run(epic);
+export type AppActions =  AuthActionTypes| UserDatenActionTypes
 
-  return store;
-};
+
