@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { ThunkDispatch } from "redux-thunk";
 import { newUserRegister } from "../../store/auth/authAction";

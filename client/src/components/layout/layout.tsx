@@ -2,17 +2,21 @@ import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import { AppState } from "../store/rootStore";
+import { AppState } from "../../store/rootStore";
 
-import NavBar from "./navBar/navBar";
+import NavBar from "../navBar/navBar";
+import { Footer } from "../footer/footer";
 
-import { loginSuccess } from "../../src/store/auth/authAction";
+import { loginSuccess } from "../../store/auth/authAction";
 import { ThunkDispatch } from "redux-thunk";
-import { AppActions } from "../store/model";
+import { AppActions } from "../../store/model";
+
+import styles from "./layout.module.scss";
+
 import {
   getUserDaten,
   userDatenDelete,
-} from "../store/userDaten/userDatenAction";
+} from "../../store/userDaten/userDatenAction";
 import { bindActionCreators } from "redux";
 
 interface ConnectedStateProps {
@@ -61,11 +65,18 @@ const LayoutComponent: React.FunctionComponent<ConnectedState> = ({
       {(isAuthenticated && localStorage.getItem("token") && firstName) ||
       !localStorage.getItem("token") ? (
         <div>
-          <header>
-            <NavBar />
-          </header>
-          <Outlet />
-          <div>footer</div>
+          <div className={`${styles.contentWitoutFooter}`}>
+            <div className={`${styles.main}`}>
+              <header>
+                <NavBar />
+              </header>
+              <main>
+                {" "}
+                <Outlet />
+              </main>
+            </div>
+          </div>
+          <Footer />
         </div>
       ) : (
         "loading"

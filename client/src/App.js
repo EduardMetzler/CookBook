@@ -9,7 +9,7 @@ import {ErrorPage} from '../src/pages/Error.page'
 import {DashboardPage} from '../src/pages/Dashboard.page'
 
 
-import {Layout} from '../src/components/layout'
+import {Layout} from './components/layout/layout'
 import { Provider } from 'react-redux';
 import { store } from './store/rootStore';
 
