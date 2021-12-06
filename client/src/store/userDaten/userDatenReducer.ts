@@ -6,12 +6,14 @@ import { UserDatenActionTypes, USER_DATEN_DELETE, USER_DATEN_LOADING, USER_DATEN
     error:string,
     firstName: string,
     lastName: string,
+    admin:boolean
   }
   
   const defaultState: UserDatenState = {
     error:"",
     firstName: "",
-    lastName: ""
+    lastName: "",
+    admin:false
   };
   
   export const userDatenReducer = (
@@ -24,14 +26,18 @@ import { UserDatenActionTypes, USER_DATEN_DELETE, USER_DATEN_LOADING, USER_DATEN
         return {  
           error:"",
             firstName:action.firstName ,
-            lastName:action.lastName
+            lastName:action.lastName,
+            admin:action.admin
+
          };
          case   USER_DATEN_DELETE:
         
           return {  
             error:"",
               firstName:"" ,
-              lastName:""
+              lastName:"",
+            admin:false
+
            };
 
       default:

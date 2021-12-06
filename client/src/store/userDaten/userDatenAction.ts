@@ -13,19 +13,20 @@ export const BASE_URL = "http://localhost:5000";
 
 
 
-const userDatenLoading = ():  AppActions => ({
-  type:  USER_DATEN_LOADING,
-  error:"",
-  firstName: "",
-  lastName: "",
+// const userDatenLoading = ():  AppActions => ({
+//   type:  USER_DATEN_LOADING,
+//   error:"",
+//   firstName: "",
+//   lastName: "",
  
-});
+// });
 
-const userDatenSave = (firstName:string,lastName:string):  AppActions => ({
+const userDatenSave = (firstName:string,lastName:string,admin:boolean):  AppActions => ({
   type:  USER_DATEN_SAVE,
   error:"",
   firstName: firstName,
   lastName: lastName,
+  admin:admin
  
 });
 
@@ -34,6 +35,8 @@ export const userDatenDelete = ():  AppActions => ({
     error:"",
     firstName:"",
     lastName: "",
+  admin:false
+
    
   });
 
@@ -54,7 +57,7 @@ export const getUserDaten = () => {
       .then((json) =>{
      if(json.firstName){
          console.log(json)
-         dispatch(userDatenSave(json.firstName,json.lastName))
+         dispatch(userDatenSave(json.firstName,json.lastName,json.admin))
 
      }
      else {

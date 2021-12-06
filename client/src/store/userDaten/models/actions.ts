@@ -13,7 +13,8 @@ export const USER_DATEN_DELETE = "USER_DATEN_DELETE";
 interface UserDatenAsync {
     firstName: string,
     lastName: string,
-    error:string
+    error:string,
+    admin:boolean
   }
 
 

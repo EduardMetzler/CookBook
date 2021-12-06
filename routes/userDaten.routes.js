@@ -2,6 +2,8 @@ const { Router } = require("express");
 
 
 const User = require("../models/User");
+const UserDaten = require("../models/UserDaten");
+
 
 const auth = require("../middleware/auth.middleware");
 
@@ -13,11 +15,13 @@ const router = Router();
 
 router.get("/loading", auth, async (req, res) => {
   try {
-    const user = await User.find({ _id: req.user.userId });
+    const userDaten = await UserDaten.find({ owner: req.user.userId });
 
-    console.log(user);
+    console.log( userDaten);
 
-    res.json({ firstName: user[0].firstName, lastName: user[0].lastName });
+ 
+    res.json(userDaten[0]);
+
   } catch (e) {
     res.status(500).json({error:{ message: "Ein Feler ist aufgetreten" }});
   }

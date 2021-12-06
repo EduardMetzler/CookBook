@@ -4,6 +4,8 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
+const UserDaten = require("../models/UserDaten");
+
 
 
 const router = Router();
@@ -27,7 +29,7 @@ router.post(
       
 
       const errors = validationResult(req.body);
-      console.log(req.body)
+
 
       if (!errors.isEmpty()) {
         return res.status(400).json({
@@ -52,7 +54,7 @@ router.post(
   
  
       const candidate = await User.findOne({ email });
-      console.log( candidate)
+   
 
       if (candidate) {
         res.status(400).json({ error:{message:"User bereits registriert"}});
@@ -68,16 +70,15 @@ router.post(
   
 
       const hashedPassword = await bcrypt.hash(password, 12);
-      console.log( hashedPassword)
+
 
       const user = new User({
         email,
         password: hashedPassword,
-        firstName,
-        lastName,
-        admin: false,
+ 
     
       });
+ 
 
   
       
@@ -87,10 +88,24 @@ router.post(
   
       });
 
-   
 
+
+      const userDaten = new UserDaten({
+          owner:user._id,
+          firstName,
+          lastName,
+          admin: false,
+
+    
+      });
+
+    
 
       await user.save()
+      await userDaten.save()
+
+
+   
 
 
       res.status(201).json({ message: "User wurde registriert", token });
