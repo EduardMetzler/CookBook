@@ -17,7 +17,7 @@ router.get("/loading", auth, async (req, res) => {
   try {
     const userDaten = await UserDaten.find({ owner: req.user.userId });
 
-    console.log( userDaten);
+
 
  
     res.json(userDaten[0]);

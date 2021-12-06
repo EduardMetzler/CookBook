@@ -1,4 +1,4 @@
-import { AuthActionTypes,REGISTER_FAIL, LOGIN_FAIL, AUTH_ERROR, LOGOUT_SUCCESS, REGISTER, REGISRER_SUCCESS, LOGIN_SUCCESS, LOGIN } from './models/actions';
+import { AuthActionTypes,REGISTER_FAIL, LOGIN_FAIL, AUTH_ERROR, LOGOUT_SUCCESS, REGISTER, REGISRER_SUCCESS, LOGIN_SUCCESS, LOGIN, ERRORS_DELETE } from './models/actions';
   
 
   
@@ -48,6 +48,16 @@ import { AuthActionTypes,REGISTER_FAIL, LOGIN_FAIL, AUTH_ERROR, LOGOUT_SUCCESS, 
                   isAuthenticated:true,
                     isLoading: false,
                   error:"" };
+              
+
+              case ERRORS_DELETE:
+          
+               
+                      
+                 return {    
+                        isAuthenticated:false,
+                          isLoading: false,
+                        error:"" };
  
       default:
         return state;

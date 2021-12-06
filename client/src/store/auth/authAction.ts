@@ -13,7 +13,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
-    AUTH_ERROR
+    AUTH_ERROR,
+    ERRORS_DELETE
 } from './models/actions';
 
 export const BASE_URL = "http://localhost:5000";
@@ -84,6 +85,16 @@ export const authError = (error:string):  AppActions => ({
     error:error
  
 });
+
+export const errorsDelete = ():  AppActions => ({
+  type:  ERRORS_DELETE ,
+     isAuthenticated: false,
+    isLoading: false,
+    error:""
+ 
+});
+
+
 
 
 export const newUserRegister = (firstName:string, lastName:string, email:string, password:string, repeatedPassword:string) => {

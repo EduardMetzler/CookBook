@@ -3,9 +3,10 @@ import { connect, useDispatch } from "react-redux";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ThunkDispatch } from "redux-thunk";
-import { userLogin } from "../../store/auth/authAction";
+import { errorsDelete, userLogin } from "../../store/auth/authAction";
 import { AppActions } from "../../store/model";
 import { AppState } from "../../store/rootStore";
+import stylesComponent from "./../styles.module.scss";
 
 import { bindActionCreators } from "redux";
 
@@ -36,9 +37,12 @@ const mapDispatchToProps = (
 const LoginComponent: React.FunctionComponent<ConnectedState> = ({
   userLogin,
   isLoading,
+  error,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -51,6 +55,10 @@ const LoginComponent: React.FunctionComponent<ConnectedState> = ({
     }
     return "btn";
   };
+
+  useEffect(() => {
+    dispatch(errorsDelete());
+  }, []);
 
   return (
     <>
@@ -80,6 +88,11 @@ const LoginComponent: React.FunctionComponent<ConnectedState> = ({
                   <span className="register-link"> Registrieren</span>
                 </Link>
               </form>
+            </div>
+            <div className={stylesComponent.warningPen}>
+              {error ? (
+                <h5 className={stylesComponent.warningPen}>{error}</h5>
+              ) : null}
             </div>
           </div>
         </div>

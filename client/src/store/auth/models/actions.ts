@@ -10,6 +10,9 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 
+export const ERRORS_DELETE = "ERRORS_DELETE";
+
+
 
 
 
@@ -49,6 +52,10 @@ interface FetchRegister extends AuthAsync {
     type: typeof AUTH_ERROR
   }
 
+  interface FetchErrorsDelete extends AuthAsync {
+    type: typeof ERRORS_DELETE
+  }
+
 
 export type AuthActionTypes = FetchRegister | 
 FetchRegisterFail |
@@ -56,5 +63,6 @@ FetchRegisterFail |
  FetchLogin|FetchLoginSuccsess|
  FetchLoginFail|
  FetchLogoutSuccsess|
- FetchAuthError
+ FetchAuthError|
+ FetchErrorsDelete
 

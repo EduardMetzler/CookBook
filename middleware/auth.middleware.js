@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
       return res.status(401).json({ message: "Anmeldung nicht möglich" });
     }
     const decoded = jwt.verify(token, config.get("jwtSecter"));
-    console.log("authorization")
+
 
     req.user = decoded;
     next();

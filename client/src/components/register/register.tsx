@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { ThunkDispatch } from "redux-thunk";
-import { newUserRegister } from "../../store/auth/authAction";
+import { errorsDelete, newUserRegister } from "../../store/auth/authAction";
 import { AppActions } from "../../store/model";
 import { AppState } from "../../store/rootStore";
 
 import styles from "./register.module.scss";
+import stylesComponent from "./../styles.module.scss";
+
 import { bindActionCreators } from "redux";
 
 interface ConnectedStateProps {
@@ -49,6 +51,12 @@ const RegisterComponent: React.FunctionComponent<ConnectedState> = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(errorsDelete());
+  }, []);
 
   const handleSubmit = (event: any) => {
     newUserRegister(firstName, lastName, email, password, repeatedPassword);
@@ -125,7 +133,11 @@ const RegisterComponent: React.FunctionComponent<ConnectedState> = ({
               </Link>
             </form>
           </div>
-          <div>{error ? error : null}</div>
+          <div className={stylesComponent.warningPen}>
+            {error ? (
+              <h5 className={stylesComponent.warningPen}>{error}</h5>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>
