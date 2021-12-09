@@ -7,6 +7,8 @@ import {RequireAuth} from '../src/components/hoc/requireAuth'
 import {NoAuth} from '../src/components/hoc/noAuth'
 import {ErrorPage} from '../src/pages/Error.page'
 import {DashboardPage} from '../src/pages/Dashboard.page'
+import {CreateRecipePage} from '../src/pages/CreateRecipe.page'
+
 
 
 import {Layout} from './components/layout/layout'
@@ -35,6 +37,10 @@ function App() {
 
    <Route path="dashboard" element={<RequireAuth>
    <DashboardPage/>
+   </RequireAuth>
+   }/>
+      <Route path="create-recipe" element={<RequireAuth>
+   <CreateRecipePage/>
    </RequireAuth>
    }/>
 

@@ -71,8 +71,11 @@ const LayoutComponent: React.FunctionComponent<ConnectedState> = ({
                 <NavBar />
               </header>
               <main>
-                {" "}
-                <Outlet />
+                <div className="row">
+                  <div className="col s12 m10 offset-m1 l8 offset-l2 xl8 offset-xl2">
+                    <Outlet />
+                  </div>
+                </div>
               </main>
             </div>
           </div>
